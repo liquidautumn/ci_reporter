@@ -203,12 +203,13 @@ module CI
       end
 
       def write_report
+        return unless @suite
         @suite.finish
         @report_manager.write_report(@suite)
       end
 
       def new_suite(name)
-        write_report if @suite
+        write_report
         @suite = TestSuite.new name
         @suite.start
       end
